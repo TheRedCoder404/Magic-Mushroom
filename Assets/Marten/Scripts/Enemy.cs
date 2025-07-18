@@ -1,14 +1,17 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float speed, maxSpeed, acceleration;
+    private float speed;
     [SerializeField]
     private Rigidbody rigidbody;
     [SerializeField] 
+    private GameManager gameManager;
+
     private GameObject player;
-    
     private float horizontal, vertical;
     private float horVelocity, verVelocity;
     
@@ -17,6 +20,8 @@ public class EnemyMovement : MonoBehaviour
     {
         horizontal = 0; 
         verVelocity = 0;
+        
+        player = gameManager.GetPlayer();
     }
 
     // Update is called once per frame

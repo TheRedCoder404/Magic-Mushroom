@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject player;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +14,10 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public GameObject GetPlayer()
+    {
+        return player;
     }
 }
