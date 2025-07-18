@@ -1,20 +1,18 @@
+using System;
+using Marten.Scripts;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Rigidbody rigidbody;
+    [SerializeField] private float speed, defaultHealth;
+    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Transform attackTransform;
     
-    private float horizontal, vertical;
-    private float horVelocity, verVelocity;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private float horizontal, vertical, currentHealth;
+
+    private void Start()
     {
-        horizontal = 0; 
-        verVelocity = 0;
+        currentHealth = defaultHealth;
     }
 
     // Update is called once per frame
@@ -34,5 +32,16 @@ public class Player : MonoBehaviour
             Vector3 vector = new Vector3(horizontal * speed, 0, vertical * speed);
             rigidbody.linearVelocity = vector.normalized * speed;
         }
+    }
+
+    public void TakeDamage(float damage, GameObject source = null)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0) Death();
+    }
+
+    private void Death()
+    {
+        Destroy(gameObject);
     }
 }
