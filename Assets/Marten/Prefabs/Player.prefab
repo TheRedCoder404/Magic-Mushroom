@@ -149,9 +149,7 @@ GameObject:
   - component: {fileID: 8308845387233817192}
   - component: {fileID: 3569007940490410181}
   - component: {fileID: 8729759053140708709}
-  - component: {fileID: 7135185691865914120}
   - component: {fileID: 227935977794521414}
-  - component: {fileID: 8102258607832571237}
   - component: {fileID: 6339021335470124675}
   m_Layer: 0
   m_Name: Player
@@ -169,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 8550359687480922696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -244,7 +242,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -252,20 +250,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7135185691865914120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8550359687480922696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad1e773c31749f4689350e14420f80d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rigidbody: {fileID: 6339021335470124675}
 --- !u!114 &227935977794521414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,22 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302a854241a019d4d89e9cffb925ee43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8102258607832571237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8550359687480922696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ace9e0ead4f8b740a31f75216f8d7bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 15
-  attackDmg: 3
+  speed: 12
   rigidbody: {fileID: 6339021335470124675}
-  health: 0
 --- !u!54 &6339021335470124675
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -316,7 +286,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
