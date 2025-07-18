@@ -1,2 +1,2 @@
-# Magic-Mushroom
+# MushMash
 
