@@ -1,18 +1,25 @@
 using System;
 using Marten.Scripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float speed, defaultHealth;
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private Transform attackTransform;
+    [SerializeField] private Image healthBar;
+    [SerializeField] private GameObject attack;
     
     private float horizontal, vertical, currentHealth;
 
     private void Start()
     {
         currentHealth = defaultHealth;
+        if (attack is not null)
+        {
+            Instantiate(attack, attackTransform.position, Quaternion.identity, transform);
+        }
     }
 
     // Update is called once per frame
@@ -37,7 +44,15 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(float damage, GameObject source = null)
     {
         currentHealth -= damage;
-        if (currentHealth <= 0) Death();
+        if (currentHealth <= 0)
+        {
+            healthBar.fillAmount = 0;
+            Death();
+        }
+        else
+        {
+            healthBar.fillAmount = currentHealth / defaultHealth;
+        }
     }
 
     private void Death()

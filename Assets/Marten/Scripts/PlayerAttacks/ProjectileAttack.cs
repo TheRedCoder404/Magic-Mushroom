@@ -13,10 +13,15 @@ public class ProjectileAttack : MonoBehaviour, IAttack
     
     private List<Collider> targetsInRange = new List<Collider>();
     private bool attacking = false;
+    private float projectileSpeed;
 
     private void Start()
     {
         ChangeRange(defaultRange);
+        if (projectilePrefab is not null)
+        {
+            projectileSpeed = projectilePrefab.GetComponent<Projectile>().GetSpeed();
+        }
     }
 
     public void DoAttack()
@@ -24,11 +29,26 @@ public class ProjectileAttack : MonoBehaviour, IAttack
         Collider target = GetClosestTarget();
         if (target is null) return;
 
-        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Vector3 targetPosition = target.transform.position;
+        Vector3 targetVelocity = Vector3.zero;
+
+        if (target.attachedRigidbody is not null)
+        {
+            targetVelocity = target.attachedRigidbody.linearVelocity;
+        }
+        
+        Vector3 toTarget = targetPosition - transform.position;
+        float distance = toTarget.magnitude;
+        
+        float timeToHit = distance / projectileSpeed;
+        
+        Vector3 futurePosition = targetPosition + targetVelocity * timeToHit;
+        
+        Vector3 direction = (futurePosition - transform.position).normalized;
         Quaternion rotation = Quaternion.LookRotation(direction);
 
         Instantiate(projectilePrefab, transform.position, rotation).GetComponent<Projectile>()
-            .SetEntityType(gameObject.CompareTag("Player") ? PlayerOrEnemy.Player : PlayerOrEnemy.Enemy);
+            .SetEntityType(transform.parent.gameObject.CompareTag("Player") ? PlayerOrEnemy.Player : PlayerOrEnemy.Enemy);
     }
 
     public bool CanAttack()

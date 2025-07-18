@@ -24,6 +24,11 @@ namespace Marten.Scripts.PlayerAttacks
             return entityType;
         }
 
+        public float GetSpeed()
+        {
+            return speed;
+        }
+
         void Update()
         {
             transform.localPosition += transform.forward * (speed * Time.deltaTime);
