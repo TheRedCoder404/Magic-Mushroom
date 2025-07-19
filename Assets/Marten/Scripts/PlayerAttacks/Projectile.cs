@@ -42,6 +42,7 @@ namespace Marten.Scripts.PlayerAttacks
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other is null) return;
             if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 if ((entityType == PlayerOrEnemy.Player && other.gameObject.CompareTag("Player")) || (entityType == PlayerOrEnemy.Enemy && other.gameObject.CompareTag("Enemy"))) return;

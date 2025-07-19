@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5637ba0712910e24b9a060b76fe82b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: {fileID: 0}
+  attack: {fileID: 7283483610893730563, guid: 123d12d2659d59a44ab3a396fd9fe513, type: 3}
   attackTransform: {fileID: 4365091330777471589}
   maxHealth: 15
 --- !u!114 &496265043397461688

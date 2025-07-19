@@ -5,7 +5,7 @@ using Marten.Scripts;
 using Marten.Scripts.PlayerAttacks;
 using UnityEngine;
 
-public class ProjectileAttack : MonoBehaviour, IAttack
+public class EnemyProjectileAttack : MonoBehaviour, IAttack
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private new SphereCollider collider;
@@ -63,7 +63,7 @@ public class ProjectileAttack : MonoBehaviour, IAttack
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!IsEnemy(other)) return;
+        if (!IsPlayer(other)) return;
         
         if (!targetsInRange.Contains(other) && other.gameObject != gameObject)
         {
@@ -81,9 +81,9 @@ public class ProjectileAttack : MonoBehaviour, IAttack
         targetsInRange.Remove(other);
     }
     
-    private bool IsEnemy(Collider other)
+    private bool IsPlayer(Collider other)
     {
-        return other.gameObject.CompareTag("Enemy");
+        return other.gameObject.CompareTag("Player");
     }
 
     private IEnumerator Attack()
@@ -102,7 +102,6 @@ public class ProjectileAttack : MonoBehaviour, IAttack
     
     private Collider GetClosestTarget()
     {
-        targetsInRange.RemoveAll(c => c is null);
         Collider closest = null;
         float minDist = float.MaxValue;
         foreach (var target in targetsInRange)

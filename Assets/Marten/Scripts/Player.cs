@@ -1,5 +1,6 @@
 using System;
 using Marten.Scripts;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,14 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Image healthBar;
     [SerializeField] private GameObject attack;
+    [SerializeField] private TMP_Text healthText;
     
     private float horizontal, vertical, currentHealth;
 
     private void Start()
     {
         currentHealth = defaultHealth;
+        healthText.text = currentHealth + " / " + defaultHealth;
         if (attack is not null)
         {
             Instantiate(attack, attackTransform.position, Quaternion.identity, transform);
@@ -47,11 +50,13 @@ public class Player : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             healthBar.fillAmount = 0;
+            healthText.text = "0";
             Death();
         }
         else
         {
             healthBar.fillAmount = currentHealth / defaultHealth;
+            healthText.text = currentHealth + " / " + defaultHealth;
         }
     }
 
