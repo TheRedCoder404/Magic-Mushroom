@@ -1,13 +1,19 @@
+using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rigidbody;
-    [SerializeField] private GameManager gameManager;
 
     private GameObject player;
-    
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -1,13 +1,20 @@
+using System;
 using Marten.Scripts;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private GameObject attack; 
+    [SerializeField] private GameObject attack;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private float maxHealth;
     
     private float currentHealth;
+    private GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
+    }
 
     private void Start()
     {
@@ -29,7 +36,13 @@ public class Enemy : MonoBehaviour, IDamageable
         if (currentHealth <= 0) Death();
     }
 
-    private void Death()
+    public void Death()
+    {
+        gameManager.EnemyDied();
+        Destroy(gameObject);
+    }
+
+    public void DeathNoCount()
     {
         Destroy(gameObject);
     }
