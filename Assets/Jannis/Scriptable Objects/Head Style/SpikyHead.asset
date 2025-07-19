@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18629d15fdea12341bc14f5f7495cbfd, type: 3}
+  m_Name: SpikyHead
+  m_EditorClassIdentifier: 
+  headPrefab: {fileID: 2487411337391095199, guid: 38986c262cf75644ebfc72db6da3f95f, type: 3}
+  enemyStyles:
+  - {fileID: 11400000, guid: 007ec44a5f5fc6e4a9260e13e7c95759, type: 2}
+  gemCountRange: {x: 8, y: 12}
+  gemSizeRange: {x: 0.8, y: 1.8}
+  gemSizeOffset: 0.35
