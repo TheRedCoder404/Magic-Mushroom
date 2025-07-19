@@ -102,6 +102,7 @@ public class EnemyProjectileAttack : MonoBehaviour, IAttack
     
     private Collider GetClosestTarget()
     {
+        targetsInRange.RemoveAll(c => !c || !c.gameObject);
         Collider closest = null;
         float minDist = float.MaxValue;
         foreach (var target in targetsInRange)
