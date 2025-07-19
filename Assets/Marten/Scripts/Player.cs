@@ -1,8 +1,6 @@
-using System;
 using Marten.Scripts;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDamageable
@@ -11,8 +9,10 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Image healthBar;
-    [SerializeField] private GameObject attack, nextWaveScreen, deathScreen;
+    [SerializeField] private GameObject attack;
     [SerializeField] private TMP_Text healthText, waveCountText, waveCounterText;
+    
+    private GameScreens gameScreens;
 
     private float horizontal, vertical, _currentHealth;
 
@@ -29,12 +29,13 @@ public class Player : MonoBehaviour, IDamageable
     
     private GameManager gameManager;
 
-    private bool movement; 
+    public bool movement; 
     public bool isDead;
 
     private void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
+        gameScreens = gameManager.GetGameScreens();
         movement = true;
         isDead = false;
         
@@ -108,33 +109,8 @@ public class Player : MonoBehaviour, IDamageable
     private void Death()
     {
         isDead = true;
-        movement = false;
         Destroy(gameObject.GetComponent<CapsuleCollider>());
-        deathScreen.SetActive(true);
-    }
-    
-    public void TurnOnNextWaveScreen()
-    {
-        nextWaveScreen.SetActive(true);
-        movement = false;
-    }
-
-    public void ContinueButton()
-    {
-        nextWaveScreen.SetActive(false);
-        RefreshHealth();
-        gameManager.StartNewWave();
-        movement = true;
-    }
-
-    public void RestartButton()
-    {
-        SceneManager.LoadScene((int)Scenes.Level);
-    }
-    
-    public void MainMenuButton()
-    {
-        SceneManager.LoadScene((int)Scenes.MainMenu);
+        gameScreens.OpenMenu(Menu.DeathScreen);
     }
 
     public void RefreshHealth()

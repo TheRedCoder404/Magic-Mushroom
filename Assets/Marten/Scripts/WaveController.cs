@@ -1,4 +1,5 @@
 using System.Collections;
+using Marten.Scripts;
 using UnityEngine;
 
 public class WaveController : MonoBehaviour
@@ -6,7 +7,14 @@ public class WaveController : MonoBehaviour
     [SerializeField] private SpawnerPlane spawnerPlane;
     [SerializeField] private GameManager gameManager;
     
+    private GameScreens gameScreens;
     private bool waveInProgress;
+    
+    private void Awake()
+    {
+        gameScreens = gameManager.GetGameScreens();
+        waveInProgress = false;
+    }
     
     public void StartNewWave(int amount, int amountOverTime, int timeLimit)
     {
@@ -26,7 +34,7 @@ public class WaveController : MonoBehaviour
     {
         spawnerPlane.SpawnAtRandomPosition();
         yield return new WaitForSeconds(timePer);
-        StartCoroutine(SpawnOneInXSeconds(amount - 1, timePer));
+        if (amount > 1) StartCoroutine(SpawnOneInXSeconds(amount - 1, timePer));
     }
 
     public bool IsWaveInProgress()
@@ -37,7 +45,7 @@ public class WaveController : MonoBehaviour
     public void EndWave()
     {
         waveInProgress = false;
-        gameManager.GetPlayer().GetComponent<Player>().TurnOnNextWaveScreen();
+        gameScreens.OpenMenu(Menu.AfterWaveScreen);
         Enemy[] enemies = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         foreach (var enemy in enemies)
         {

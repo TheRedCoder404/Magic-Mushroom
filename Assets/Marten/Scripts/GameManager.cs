@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
+using Marten.Scripts;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player, enemyPrefab;
+    [SerializeField] private GameScreens gameScreens;
     [SerializeField] private WaveController waveController;
     [SerializeField] private int firstWaveSpawnAmount = 5, firstWaveExtraSpawnAmount = 5, timeBeforeWave = 5, firstWaveTimeLimit = 10;
     [SerializeField] private int minNewWaveSpawnAmount = 5, maxNewWaveSpawnAmount = 15;
     [SerializeField] private int minNewWaveExtraSpawnAmount = 5, maxNewWaveExtraSpawnAmount = 50;
+    [SerializeField] private int winAfterMinWaves = 20, winAllXWaves = 5;
     [SerializeField] private float newWaveSpawnAmountMultiplier = 1.1f, newWaveExtraSpawnAmountMultiplier = 1.2f;
 
     private int enemiesAlive, countDownTime, nextWaveSpawnAmount, nextWaveExtraSpawnAmount, nextCountDownTime, _currentWave;
@@ -21,6 +24,10 @@ public class GameManager : MonoBehaviour
         {
             _currentWave = value; 
             player.GetComponent<Player>().UpdateWaveCounterText(_currentWave);
+            if (_currentWave == minNewWaveSpawnAmount || (_currentWave > winAfterMinWaves && _currentWave % winAllXWaves == 0))
+            {
+                gameScreens.OpenMenu(Menu.WinScreen);
+            }
         }
     }
     
@@ -95,6 +102,11 @@ public class GameManager : MonoBehaviour
     public GameObject GetPlayer()
     {
         return player;
+    }
+    
+    public GameScreens GetGameScreens()
+    {
+        return gameScreens;
     }
     
     public GameObject GetEnemyPrefab()
