@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameScreens : MonoBehaviour
 {
     [SerializeField] private GameObject nextWaveScreen, deathScreen, winScreen;
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private GameManager gameManager;
     
     public void OpenMenu(Menu menu)
@@ -31,19 +31,16 @@ public class GameScreens : MonoBehaviour
     private void TurnOnDeathScreen()
     {
         deathScreen.SetActive(true);
-        player.movement = true;
     }
     
     private void TurnOnNextWaveScreen()
     {
         nextWaveScreen.SetActive(true);
-        player.movement = true;
     }
     
     private void TurnOnWinScreen()
     {
         winScreen.SetActive(true);
-        player.movement = true;
     }
     
     public void WinContinueButton()
@@ -55,9 +52,8 @@ public class GameScreens : MonoBehaviour
     public void ContinueButton()
     {
         nextWaveScreen.SetActive(false);
-        player.RefreshHealth();
+        playerStats.CompleteHeal();
         gameManager.StartNewWave();
-        player.movement = true;
         Time.timeScale = 1;
     }
 

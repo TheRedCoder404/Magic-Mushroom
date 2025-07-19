@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
                 NewWave();
             }
         } 
-        else if (!player.GetComponent<Player>().isDead)
+        else
         {
             StartCoroutine(DecreaseCountDown());
         }
@@ -122,5 +122,10 @@ public class GameManager : MonoBehaviour
     public string GetCountDownTime()
     {
         return countDownTime.ToString();
+    }
+
+    public void PlayerDied()
+    {
+        throw new NotImplementedException();
     }
 }
