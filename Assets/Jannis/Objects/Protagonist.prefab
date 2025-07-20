@@ -155,8 +155,8 @@ Light:
   m_Color: {r: 1, g: 0.70754707, b: 0.844989, a: 1}
   m_Intensity: 5
   m_Range: 10
-  m_SpotAngle: 174.045
-  m_InnerSpotAngle: 99.84362
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 146.91615
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -5225,7 +5225,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5f4a99b43771a4842b86f5c5cc751479, type: 2}
     - target: {fileID: -8679921383154817045, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.02
+      value: 15.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5233,7 +5233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.65
+      value: -2.53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5442,6 +5442,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8268527529551632206}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6513530904046688759}
   m_SourcePrefab: {fileID: 100100000, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
 --- !u!1 &1406471124647535493 stripped
 GameObject:
@@ -5470,6 +5473,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6513530904046688759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406471124647535493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401eeb3d3469d5f4fb61089570fa70d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 10
 --- !u!4 &1787676875775392063 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 323675b65b6bab843a08e6c31de18796, type: 3}
