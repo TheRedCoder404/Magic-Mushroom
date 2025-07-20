@@ -34,6 +34,8 @@ public class ProjectileAttack : MonoBehaviour, IPlayerAttack
     {
         targetsInRange.RemoveAll(c => !c || !c.gameObject);
         
+        Debug.Log("Shoot");
+        
         var sortedTargets = new List<Collider>(targetsInRange);
         sortedTargets.Sort((a, b) =>
             Vector3.Distance(transform.position, a.transform.position)
@@ -163,6 +165,7 @@ public class ProjectileAttack : MonoBehaviour, IPlayerAttack
 
     private IEnumerator Attack()
     {
+        Debug.Log("Attack");
         if (CanAttack())
         {
             DoAttack();
