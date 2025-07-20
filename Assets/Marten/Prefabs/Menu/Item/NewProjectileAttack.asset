@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1968777ca8b268a4cae9c6579df10d3f, type: 3}
+  m_Name: NewProjectileAttack
+  m_EditorClassIdentifier: 
+  itemName: More Projectiles
+  itemIcon: {fileID: 0}
+  description: Adds another Projectile
+  price: 0
+  attackPrefab: {fileID: 7283483610893730563, guid: 967513d50ad40b245bf43450da8f7e2c, type: 3}
+  chance: 0
+  statType: 
+  stats: 
+  value: []
