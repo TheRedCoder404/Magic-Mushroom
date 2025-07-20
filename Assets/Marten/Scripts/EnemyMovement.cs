@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         Vector3 playerDirection = player.transform.position - this.transform.position;
+        playerDirection.y = 0;
         rigidbody.linearVelocity = playerDirection.normalized * speed;
     }
 }

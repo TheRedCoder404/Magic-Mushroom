@@ -138,7 +138,6 @@ public class ProjectileAttack : MonoBehaviour, IPlayerAttack
     private void OnTriggerEnter(Collider other)
     {
         if (!IsEnemy(other) || !isMain) return;
-        
         if (!targetsInRange.Contains(other) && other.gameObject != gameObject)
         {
             targetsInRange.Add(other);

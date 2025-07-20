@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewProjectileAttack
   m_EditorClassIdentifier: 
   itemName: More Projectiles
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 28160ca7875412b48b479b8be919ed61, type: 3}
   description: Adds another Projectile
   price: 50
   attackPrefab: {fileID: 7283483610893730563, guid: 967513d50ad40b245bf43450da8f7e2c, type: 3}
