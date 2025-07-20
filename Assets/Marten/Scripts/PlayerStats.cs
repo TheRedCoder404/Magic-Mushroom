@@ -30,7 +30,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private float _critDamage;
     private float _lifesteal;
     private float _earning;
-    private int _shrooms;
 
     public float maxHealth
     {
@@ -137,16 +136,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         set
         {
             _earning = value;
-        }
-    }
-    
-    public int shrooms
-    {
-        get { return _shrooms; }
-        set
-        {
-            _shrooms = value;
-            player.UpdateShroomCounterText(_shrooms);
+            player.UpdateLifesteal();
         }
     }
 
@@ -163,7 +153,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
         _critDamage = defaultCritDamage;
         _lifesteal = defaultLifesteal;
         _earning = defaultEarning;
-        shrooms = 0;
     }
 
     public float GetCurrentHealth()
@@ -199,6 +188,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
     
     public void EarnShroom(float amount)
     {
-        shrooms += (int)(amount * earning);
+        earning += amount * earning;
     }
 }
