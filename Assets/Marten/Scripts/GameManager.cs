@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         {
             _currentWave = value; 
             player.GetComponent<Player>().UpdateWaveCounterText(_currentWave);
-            if (_currentWave == minNewWaveSpawnAmount || (_currentWave > winAfterMinWaves && _currentWave % winAllXWaves == 0))
+            if (_currentWave == winAfterMinWaves || ((_currentWave > winAfterMinWaves) && (_currentWave % winAllXWaves == 0)))
             {
                 gameScreens.OpenMenu(Menu.WinScreen);
             }
