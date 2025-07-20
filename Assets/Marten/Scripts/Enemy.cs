@@ -46,7 +46,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Death()
     {
         gameManager.EnemyDied();
-        Instantiate(shroom, transform.position, Quaternion.identity);
+        Vector3 spanwPosition = attackTransform.position;
+        spanwPosition.y = 0.5f;
+        Instantiate(shroom, spanwPosition, Quaternion.identity);
         Destroy(gameObject);
     }
 

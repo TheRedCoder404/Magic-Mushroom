@@ -28,7 +28,7 @@ public class NextWaveScreen : MonoBehaviour
 
     public void UpdateShroomText()
     {
-        shroomText.text = "Shrooms: " + playerStats.shrooms;
+        if (playerStats) shroomText.text = "Shrooms: " + playerStats.shrooms;
     }
 
     public void ResetRerolls()
@@ -40,6 +40,47 @@ public class NextWaveScreen : MonoBehaviour
     public void UpdateRerollText()
     {
         rerollText.text = "Reroll - " + rerollCost;
+    }
+    
+    public void CheckRerollPurchaseablity()
+    {
+        if (!playerStats) return;
+        
+        if (playerStats.shrooms >= rerollCost)
+        {
+            rerollText.faceColor = Color.green;
+            isRerollPurchaseable = true;
+        }
+        else
+        {
+            rerollText.faceColor = Color.red;
+            isRerollPurchaseable = false;
+        }
+        
+        UpdateShroomText();
+        UpdateRerollText();
+    }
+    
+    public void RerollItems()
+    {
+        rerollsPerformed++;
+        GenerateItemSlots();
+    }
+    
+    public void BuyReroll()
+    {
+        CheckRerollPurchaseablity();
+        if (!isRerollPurchaseable) return;
+
+        playerStats.SpendShroom(rerollCost);
+        UpdateShroomText();
+        
+        rerollsLeft--;
+        RerollItems();
+        CheckRerollPurchaseablity();
+        
+        rerollCost = Mathf.RoundToInt(rerollCost * rerollPriceMultiplier);
+        UpdateRerollText();
     }
 
     private void GenerateItemSlots()
@@ -82,33 +123,6 @@ public class NextWaveScreen : MonoBehaviour
         if (itemSlotPosition3.transform.childCount > 0) Destroy(itemSlotPosition3.transform.GetChild(0).gameObject);
         if (itemSlotPosition4.transform.childCount > 0) Destroy(itemSlotPosition4.transform.GetChild(0).gameObject);
         if (itemSlotPosition5.transform.childCount > 0) Destroy(itemSlotPosition5.transform.GetChild(0).gameObject);
-    }
-    
-    public void RerollItems()
-    {
-        PlayerStats playerStats = GameObject.FindFirstObjectByType<PlayerStats>();
-        if (rerollsLeft <= 0 || !isRerollPurchaseable) return;
-        rerollsLeft--;
-        rerollsPerformed++;
-        playerStats.SpendShroom(rerollCost);
-        rerollCost = Mathf.RoundToInt(defaultRerollCost * Mathf.Pow(rerollPriceMultiplier, rerollsPerformed));
-        UpdateRerollText();
-        GenerateItemSlots();
-    }
-    
-    public void CheckRerollPurchaseablity()
-    {
-        PlayerStats playerStats = GameObject.FindFirstObjectByType<PlayerStats>();
-        if (playerStats.shrooms >= rerollCost)
-        {
-            rerollText.faceColor = Color.green;
-            isRerollPurchaseable = false;
-        }
-        else
-        {
-            rerollText.faceColor = Color.red;
-            isRerollPurchaseable = false;
-        }
     }
 
     public void CheckAllPurchaseablity()

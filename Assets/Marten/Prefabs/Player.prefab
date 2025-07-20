@@ -487,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 510097152160224470}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -995,6 +995,7 @@ MonoBehaviour:
   nextWaveScreen: {fileID: 7685063601067694660}
   deathScreen: {fileID: 308295188836255880}
   winScreen: {fileID: 1668335941346632866}
+  _nextWaveScreen: {fileID: 1039174510273509449}
   playerStats: {fileID: 2892708441742662777}
   playerInventory: {fileID: 553884734760228663}
   gameManager: {fileID: 0}
@@ -3642,8 +3643,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.13
-  m_Center: {x: 0, y: 0.8, z: 0}
+  m_Radius: 1.7
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!1 &8626246359409549579
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,7 +3846,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1039174510273509449}
         m_TargetAssemblyTypeName: NextWaveScreen, Assembly-CSharp
-        m_MethodName: RerollItems
+        m_MethodName: BuyReroll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
