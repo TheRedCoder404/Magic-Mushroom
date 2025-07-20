@@ -15,6 +15,7 @@ MonoBehaviour:
   headPrefab: {fileID: 5610551950927302667, guid: 65de1eef784497d4ca08531f245a7edb, type: 3}
   enemyStyles:
   - {fileID: 11400000, guid: 007ec44a5f5fc6e4a9260e13e7c95759, type: 2}
+  - {fileID: 11400000, guid: ef9c3b344242d624c82dbbd94e7b9334, type: 2}
   gemCountRange: {x: 7, y: 12}
   gemSizeRange: {x: 0.8, y: 1.6}
   gemSizeOffset: 0.3

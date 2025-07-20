@@ -19,7 +19,7 @@ public class EnemyCreator : MonoBehaviour
         var style = headStyle.GetRandomStyle();
         var headInstance = CreateStylisedPartInstance(headStyle.headPrefab, style);
         var eyeInstance = CreateStylisedPartInstance(eyePrefab, style);
-        ScatterGems(headInstance.transform, headStyle, out Material gemMaterial);
+        ScatterGems(headInstance.transform, headStyle, style, out Material gemMaterial);
 
 
         armature.Setup(style, headInstance, eyeInstance, gemMaterial);
@@ -46,7 +46,7 @@ public class EnemyCreator : MonoBehaviour
         return instance;
     }
 
-    private void ScatterGems(Transform scatterFrom, HeadStyle headStyle, out Material gemsMaterial)
+    private void ScatterGems(Transform scatterFrom, HeadStyle headStyle, EnemyStyle enemyStyle, out Material gemsMaterial)
     {
         var gemCount = headStyle.randomGemCount;
 
@@ -83,7 +83,7 @@ public class EnemyCreator : MonoBehaviour
 
 
         gemsMaterial = Instantiate(instances[0].GetComponent<MeshRenderer>().material);
-        float randomPrimaryColor = Random.Range(0f, 1f);
+        float randomPrimaryColor = Random.Range(enemyStyle.gemRandomColorRange.x, enemyStyle.gemRandomColorRange.y);
         gemsMaterial.SetFloat("_PrimaryColor", randomPrimaryColor);
 
         foreach (var instance in instances)

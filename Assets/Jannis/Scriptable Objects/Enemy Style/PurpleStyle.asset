@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7e05dcfe21fcc84cbadb892d81451e7, type: 3}
-  m_Name: BrownStyle
+  m_Name: PurpleStyle
   m_EditorClassIdentifier: 
-  headPrimaryColor: {r: 0.57232696, g: 0.29793817, b: 0.109785885, a: 1}
-  headSecondaryColor: {r: 0.8679245, g: 0.43466035, b: 0.15557128, a: 1}
-  undersideColor: {r: 0.9685534, g: 0.04568636, b: 0.1862521, a: 1}
-  stemPrimaryColor: {r: 1, g: 0.72686994, b: 0.5503144, a: 1}
-  stemSecondaryColor: {r: 0.66666657, g: 0.42793974, b: 0.30398312, a: 1}
+  headPrimaryColor: {r: 0.46921486, g: 0.12272052, b: 0.5345911, a: 1}
+  headSecondaryColor: {r: 1, g: 0.040880322, b: 0.45373335, a: 1}
+  undersideColor: {r: 1, g: 0.028301716, b: 0.08538358, a: 1}
+  stemPrimaryColor: {r: 0.23452385, g: 0.92133915, b: 0.9685534, a: 1}
+  stemSecondaryColor: {r: 0.045884207, g: 0.5031446, b: 0.43743166, a: 1}
