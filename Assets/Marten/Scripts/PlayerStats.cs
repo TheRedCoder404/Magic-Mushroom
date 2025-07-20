@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] public float defaultDamage = 1f;
     [SerializeField] public float defaultSpeed = 12f;
     [SerializeField] public float defaultAttackSpeed = 1f;
-    [SerializeField] public float defaultRange = 6f;
+    [SerializeField] public float defaultRange = 1f;
     [SerializeField] public float defaultResistance = 1f;
     [SerializeField] public float defaultCritChance = 0.1f;
     [SerializeField] public float defaultCritDamage = 1.5f;
@@ -184,5 +184,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public void CompleteHeal()
     {
         currentHealth = maxHealth;
+    }
+    
+    public void EarnShroom(float amount)
+    {
+        earning += amount * earning;
     }
 }

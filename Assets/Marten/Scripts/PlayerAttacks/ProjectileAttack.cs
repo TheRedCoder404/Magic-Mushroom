@@ -131,14 +131,8 @@ public class ProjectileAttack : MonoBehaviour, IPlayerAttack
 
     public int prefabCount
     {
-        get
-        {
-            return projectileCount;
-        }
-        set
-        {
-            projectileCount = value;
-        }
+        get => this.projectileCount;
+        set => this.projectileCount = value;
     }
 
     private void OnTriggerEnter(Collider other)

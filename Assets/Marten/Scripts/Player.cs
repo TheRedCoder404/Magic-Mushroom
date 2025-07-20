@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Marten.Scripts;
 using TMPro;
 using UnityEngine;
@@ -67,14 +68,20 @@ public class Player : MonoBehaviour
     {
         if (attackPrefab is null) return;
 
-        if (attacks.Contains(attackPrefab))
+        if (transform.childCount > 3)
         {
-            attacks.Find(o => o == attackPrefab).GetComponent<IPlayerAttack>().prefabCount++;
+            for (var i = 3; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).name.StartsWith(attackPrefab.name))
+                {
+                    transform.GetChild(i).gameObject.GetComponent<IPlayerAttack>().prefabCount++;
+                    return;
+                }
+            }
         }
-        else
-        {
-            attacks.Add(attackPrefab);
-        }
+        
+        Instantiate(attackPrefab, attackTransform.position, Quaternion.identity, transform);
+
     }
 
     public void UpdateHealthBar()
@@ -95,9 +102,15 @@ public class Player : MonoBehaviour
 
     public void UpdateRange()
     {
-        foreach (var attack in attacks)
+        if (transform.childCount > 3)
         {
-            if (attack && TryGetComponent<IPlayerAttack>(out var playerAttack)) playerAttack.UpdateRange();
+            for (var i = 3; i < transform.childCount; i++)
+            {
+                if (transform.GetChild(i).TryGetComponent<IPlayerAttack>(out var attack))
+                {
+                    attack.UpdateRange();
+                }
+            }
         }
     }
 

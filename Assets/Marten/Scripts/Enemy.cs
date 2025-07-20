@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private GameObject attack;
+    [SerializeField] private GameObject attack, shroom;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private float maxHealth;
     
@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Death()
     {
         gameManager.EnemyDied();
+        Instantiate(shroom, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

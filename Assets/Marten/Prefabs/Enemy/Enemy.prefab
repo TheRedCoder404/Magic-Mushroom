@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack: {fileID: 7283483610893730563, guid: 123d12d2659d59a44ab3a396fd9fe513, type: 3}
+  shroom: {fileID: 3565034859841808211, guid: b6f73b4c86622eb42a89c9aaae589892, type: 3}
   attackTransform: {fileID: 4365091330777471589}
   maxHealth: 5
 --- !u!114 &496265043397461688
