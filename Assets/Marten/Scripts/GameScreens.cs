@@ -37,6 +37,7 @@ public class GameScreens : MonoBehaviour
     private void TurnOnNextWaveScreen()
     {
         nextWaveScreen.transform.GetChild(0).gameObject.GetComponent<NextWaveScreen>().RerollItems();
+        nextWaveScreen.transform.GetChild(0).gameObject.GetComponent<NextWaveScreen>().ResetRerolls();
         nextWaveScreen.SetActive(true);
     }
     

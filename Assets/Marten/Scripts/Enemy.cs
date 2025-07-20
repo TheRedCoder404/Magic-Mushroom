@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] private GameObject attack, shroom;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private float maxHealth;
+    [SerializeField] private EnemyCreator enemyCreator;
     
     private float currentHealth;
     private GameManager gameManager;
@@ -14,8 +15,14 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
+        SetupVisuals();
     }
 
+    private void SetupVisuals()
+    {
+        enemyCreator.Create(transform);
+    }
+    
     private void Start()
     {
         currentHealth = maxHealth;

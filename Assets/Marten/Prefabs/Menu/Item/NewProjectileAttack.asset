@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: More Projectiles
   itemIcon: {fileID: 0}
   description: Adds another Projectile
-  price: 0
+  price: 50
   attackPrefab: {fileID: 7283483610893730563, guid: 967513d50ad40b245bf43450da8f7e2c, type: 3}
   chance: 0
   statType: 
