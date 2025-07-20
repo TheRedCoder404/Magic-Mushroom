@@ -39,7 +39,7 @@ public class NextWaveScreen : MonoBehaviour
 
     public void UpdateRerollText()
     {
-        shroomText.text = "Reroll - " + rerollCost;
+        rerollText.text = "Reroll - " + rerollCost;
     }
 
     private void GenerateItemSlots()

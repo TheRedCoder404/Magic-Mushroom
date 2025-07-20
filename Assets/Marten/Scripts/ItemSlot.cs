@@ -18,7 +18,8 @@ public class ItemSlot : MonoBehaviour
     private void Start()
     {
         nextWaveScreen = transform.parent.gameObject.transform.parent.gameObject.GetComponent<NextWaveScreen>();
-        
+
+        icon.sprite = item.ItemIcon;
         name.text = item.ItemName;
         description.text = item.Description;
         stats.text = item.GenerateStatsString();
