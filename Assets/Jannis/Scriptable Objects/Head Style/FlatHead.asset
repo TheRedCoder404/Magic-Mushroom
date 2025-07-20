@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18629d15fdea12341bc14f5f7495cbfd, type: 3}
+  m_Name: FlatHead
+  m_EditorClassIdentifier: 
+  headPrefab: {fileID: 5610551950927302667, guid: 65de1eef784497d4ca08531f245a7edb, type: 3}
+  enemyStyles:
+  - {fileID: 11400000, guid: 007ec44a5f5fc6e4a9260e13e7c95759, type: 2}
+  - {fileID: 11400000, guid: ef9c3b344242d624c82dbbd94e7b9334, type: 2}
+  gemCountRange: {x: 7, y: 12}
+  gemSizeRange: {x: 0.8, y: 1.6}
+  gemSizeOffset: 0.3
