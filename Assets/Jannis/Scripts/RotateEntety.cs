@@ -10,13 +10,16 @@ public class RotateEntety : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
+        bool isMoving = x != 0 || y != 0;
 
+        if (isMoving)
+        {
+            Quaternion rotation = Quaternion.LookRotation(new Vector3(-x, 0, -y));
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * spinSpeed);
+        }
 
-        Quaternion rotation = Quaternion.LookRotation(new Vector3(-x, 0, -y));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * spinSpeed);
         
 
-        bool isMoving = x != 0 || y != 0;
         if(animator != null)
             animator.SetBool("IsRunning", isMoving);
     }
