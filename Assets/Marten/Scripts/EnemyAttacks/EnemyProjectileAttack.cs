@@ -9,7 +9,7 @@ public class EnemyProjectileAttack : MonoBehaviour, IEnemyAttack
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private new SphereCollider collider;
-    [SerializeField] private float defaultRange = 6f, attackDelay = 2f, startDelay = 1f;
+    [SerializeField] private float defaultRange = 6f, attackDelay = 2f, startDelay = 0.5f;
     
     private List<Collider> targetsInRange = new List<Collider>();
     private bool attacking = false, allowedToAttack = false;

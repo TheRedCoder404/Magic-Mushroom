@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -9,15 +10,83 @@ public class NextWaveScreen : MonoBehaviour
     [SerializeField] private GameObject itemSlotPosition1, itemSlotPosition2, itemSlotPosition3, itemSlotPosition4, itemSlotPosition5;
     [SerializeField] private Item[] items;
     [SerializeField] private GameObject itemSlotPrefab;
+    [SerializeField] private TMP_Text shroomText, rerollText;
+    [SerializeField] private int rerollCost, defaultRerollCost = 5, rerollsLeft, rerollsPerTurn = 3, rerollsPerformed = 0;
+    [SerializeField] private float rerollPriceMultiplier = 1.5f;
 
+    private bool isRerollPurchaseable = false;
+    private PlayerStats playerStats;
+    
     private void Start()
     {
+        playerStats = GameObject.FindFirstObjectByType<PlayerStats>();
+        rerollCost = defaultRerollCost;
+        CheckRerollPurchaseablity();
+        ResetRerolls();
         GenerateItemSlots();
+    }
+
+    public void UpdateShroomText()
+    {
+        if (playerStats) shroomText.text = "Shrooms: " + playerStats.shrooms;
+    }
+
+    public void ResetRerolls()
+    {
+        rerollsLeft = rerollCost;
+        UpdateRerollText();
+    }
+
+    public void UpdateRerollText()
+    {
+        rerollText.text = "Reroll - " + rerollCost;
+    }
+    
+    public void CheckRerollPurchaseablity()
+    {
+        if (!playerStats) return;
+        
+        if (playerStats.shrooms >= rerollCost)
+        {
+            rerollText.faceColor = Color.green;
+            isRerollPurchaseable = true;
+        }
+        else
+        {
+            rerollText.faceColor = Color.red;
+            isRerollPurchaseable = false;
+        }
+        
+        UpdateShroomText();
+        UpdateRerollText();
+    }
+    
+    public void RerollItems()
+    {
+        rerollsPerformed++;
+        GenerateItemSlots();
+    }
+    
+    public void BuyReroll()
+    {
+        CheckRerollPurchaseablity();
+        if (!isRerollPurchaseable) return;
+
+        playerStats.SpendShroom(rerollCost);
+        UpdateShroomText();
+        
+        rerollsLeft--;
+        RerollItems();
+        CheckRerollPurchaseablity();
+        
+        rerollCost = Mathf.RoundToInt(rerollCost * rerollPriceMultiplier);
+        UpdateRerollText();
     }
 
     private void GenerateItemSlots()
     {
         ClearItemSlots();
+        UpdateShroomText();
         
         List<Item> pool = new List<Item>();
         
@@ -55,9 +124,18 @@ public class NextWaveScreen : MonoBehaviour
         if (itemSlotPosition4.transform.childCount > 0) Destroy(itemSlotPosition4.transform.GetChild(0).gameObject);
         if (itemSlotPosition5.transform.childCount > 0) Destroy(itemSlotPosition5.transform.GetChild(0).gameObject);
     }
-    
-    public void RerollItems()
+
+    public void CheckAllPurchaseablity()
     {
-        GenerateItemSlots();
+        if (itemSlotPosition1.transform.childCount > 0) 
+            itemSlotPosition1.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition2.transform.childCount > 0) 
+            itemSlotPosition2.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition3.transform.childCount > 0) 
+            itemSlotPosition3.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition4.transform.childCount > 0) 
+            itemSlotPosition4.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition5.transform.childCount > 0) 
+            itemSlotPosition5.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
     }
 }

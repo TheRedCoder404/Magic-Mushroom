@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameScreens : MonoBehaviour
 {
     [SerializeField] private GameObject nextWaveScreen, deathScreen, winScreen;
+    [SerializeField] private NextWaveScreen _nextWaveScreen;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Inventory playerInventory;
     [SerializeField] private GameManager gameManager;
@@ -36,7 +37,9 @@ public class GameScreens : MonoBehaviour
     
     private void TurnOnNextWaveScreen()
     {
-        nextWaveScreen.transform.GetChild(0).gameObject.GetComponent<NextWaveScreen>().RerollItems();
+        _nextWaveScreen.RerollItems();
+        _nextWaveScreen.ResetRerolls();
+        _nextWaveScreen.CheckRerollPurchaseablity();
         nextWaveScreen.SetActive(true);
     }
     

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Image healthBar;
     [SerializeField] private List<GameObject> attacks;
-    [SerializeField] private TMP_Text healthText, waveCountText, waveCounterText;
+    [SerializeField] private TMP_Text healthText, waveCountText, waveCounterText, shroomText;
     [SerializeField] private PlayerStats playerStats;
 
     private GameScreens gameScreens;
@@ -86,13 +86,18 @@ public class Player : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.fillAmount = playerStats.GetCurrentHealth() / playerStats.maxHealth;
-        healthText.text = playerStats.GetCurrentHealth() + " / " + playerStats.maxHealth;
+        healthBar.fillAmount = playerStats.currentHealth / playerStats.maxHealth;
+        healthText.text = playerStats.currentHealth + " / " + playerStats.maxHealth;
     }
     
     public void UpdateWaveCounterText(int waveCount)
     {
         waveCounterText.text = "Wave: " + waveCount;
+    }
+    
+    public void UpdateShroomText(int shroomCount)
+    {
+        shroomText.text = "Shrooms: " + shroomCount;
     }
     
     public void ChangeWaveCountColor(Color color)
