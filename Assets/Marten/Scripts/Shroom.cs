@@ -10,7 +10,6 @@ public class Shroom : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerStats>(out var playerStats))
         {
-            Debug.Log("Shroom collected: " + value);
             playerStats.EarnShroom(value);
             Destroy(mainObject);
         }
