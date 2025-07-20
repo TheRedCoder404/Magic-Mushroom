@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -9,15 +10,22 @@ public class NextWaveScreen : MonoBehaviour
     [SerializeField] private GameObject itemSlotPosition1, itemSlotPosition2, itemSlotPosition3, itemSlotPosition4, itemSlotPosition5;
     [SerializeField] private Item[] items;
     [SerializeField] private GameObject itemSlotPrefab;
+    [SerializeField] private TMP_Text shroomText;
 
     private void Start()
     {
         GenerateItemSlots();
     }
 
+    public void UpdateShroomText()
+    {
+        shroomText.text = "Shrooms: " + GameObject.FindFirstObjectByType<PlayerStats>().shrooms;
+    }
+
     private void GenerateItemSlots()
     {
         ClearItemSlots();
+        UpdateShroomText();
         
         List<Item> pool = new List<Item>();
         
@@ -59,5 +67,19 @@ public class NextWaveScreen : MonoBehaviour
     public void RerollItems()
     {
         GenerateItemSlots();
+    }
+
+    public void CheckAllPurchaseablity()
+    {
+        if (itemSlotPosition1.transform.childCount > 0) 
+            itemSlotPosition1.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition2.transform.childCount > 0) 
+            itemSlotPosition2.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition3.transform.childCount > 0) 
+            itemSlotPosition3.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition4.transform.childCount > 0) 
+            itemSlotPosition4.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
+        if (itemSlotPosition5.transform.childCount > 0) 
+            itemSlotPosition5.transform.GetChild(0).GetComponent<ItemSlot>().CheckPurchaseablity();
     }
 }

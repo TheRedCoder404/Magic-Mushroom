@@ -86,8 +86,8 @@ public class Player : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.fillAmount = playerStats.GetCurrentHealth() / playerStats.maxHealth;
-        healthText.text = playerStats.GetCurrentHealth() + " / " + playerStats.maxHealth;
+        healthBar.fillAmount = playerStats.currentHealth / playerStats.maxHealth;
+        healthText.text = playerStats.currentHealth + " / " + playerStats.maxHealth;
     }
     
     public void UpdateWaveCounterText(int waveCount)

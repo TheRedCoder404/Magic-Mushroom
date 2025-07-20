@@ -153,7 +153,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private void Start()
     {
         _maxHealth = defaultMaxHealth;
-        _currentHealth = defaultMaxHealth;
+        currentHealth = defaultMaxHealth;
         _damage = defaultDamage;
         _speed = defaultSpeed;
         _attackSpeed = defaultAttackSpeed;
@@ -200,5 +200,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public void EarnShroom(float amount)
     {
         shrooms += (int)(amount * earning);
+    }
+    
+    public void SpendShroom(int amount)
+    {
+        shrooms -= amount;
     }
 }
