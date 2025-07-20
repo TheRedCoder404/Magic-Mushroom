@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1968777ca8b268a4cae9c6579df10d3f, type: 3}
-  m_Name: MoreAttackSpeed
+  m_Name: AddMaxHealthMedium
   m_EditorClassIdentifier: 
-  itemName: More Attackspeed
-  itemIcon: {fileID: 21300000, guid: 7cac76e904d0e784b832a9bb2995678c, type: 3}
-  description: Give more Attackspeed
-  price: 30
+  itemName: More Max Health
+  itemIcon: {fileID: 21300000, guid: fab4df22bec8fdf4ab62a86b09c7fd67, type: 3}
+  description: Adds more Max LP
+  price: 40
   attackPrefab: {fileID: 0}
-  chance: 1
+  chance: 3
   statType: 00000000
-  stats: 03000000
+  stats: 0a000000
   value:
-  - 0.3
+  - 15

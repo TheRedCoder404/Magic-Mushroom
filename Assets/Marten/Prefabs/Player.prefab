@@ -3560,6 +3560,7 @@ MonoBehaviour:
   waveCounterText: {fileID: 6319131593683229565}
   shroomText: {fileID: 1536997754206281371}
   playerStats: {fileID: 2892708441742662777}
+  animator: {fileID: 0}
 --- !u!114 &2892708441742662777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3572,7 +3573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35c7a1d5bdc38f41a339ec2ce717505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaxHealth: 100
+  defaultMaxHealth: 25
   defaultDamage: 1
   defaultSpeed: 12
   defaultAttackSpeed: 1

@@ -98,11 +98,11 @@ public class NextWaveScreen : MonoBehaviour
             }
         }
         
-        int randomIndex1 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
-        int randomIndex2 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
-        int randomIndex3 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
-        int randomIndex4 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
-        int randomIndex5 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
+        int randomIndex1 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 2);
+        int randomIndex2 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 2);
+        int randomIndex3 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 2);
+        int randomIndex4 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 2);
+        int randomIndex5 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 2);
         
         GameObject itemSlot1 = Instantiate(itemSlotPrefab, itemSlotPosition1.transform.position, itemSlotPosition1.transform.rotation, itemSlotPosition1.transform);
         itemSlot1.GetComponent<ItemSlot>().SetItem(items[randomIndex1]);
