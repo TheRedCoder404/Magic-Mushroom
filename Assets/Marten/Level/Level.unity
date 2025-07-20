@@ -242,6 +242,30 @@ PrefabInstance:
       propertyPath: shroomText
       value: 
       objectReference: {fileID: 1680869625}
+    - target: {fileID: 1039174510273509449, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039174510273509449, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: 'items.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f5558332f21c7645805eb58bbc54989, type: 2}
+    - target: {fileID: 1039174510273509449, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: 'items.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 04e6976c727894d42ba50658f196392b, type: 2}
+    - target: {fileID: 1039174510273509449, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: 'items.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d64619540da3dd64891486d29056f881, type: 2}
+    - target: {fileID: 1039174510273509449, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: 'items.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7afb4381e92af6f44a15c99a173ba894, type: 2}
+    - target: {fileID: 1039174510273509449, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: 'items.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ad908a8f47dc04428c6e658730691a8, type: 2}
     - target: {fileID: 1668335941346632866, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -323,6 +347,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4200969938574062122, guid: 7f2f374f579d2694490d3725ea99b018, type: 3}
+      propertyPath: m_Intensity
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4675289724797275528, guid: 7f2f374f579d2694490d3725ea99b018, type: 3}
       propertyPath: m_Name
       value: Directional Light
@@ -604,6 +632,10 @@ PrefabInstance:
     - target: {fileID: 6075985446035727061, guid: 31d9f2de863217b41b0916e125a073b6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 17.827
+      objectReference: {fileID: 0}
+    - target: {fileID: 7004797001340534242, guid: 31d9f2de863217b41b0916e125a073b6, type: 3}
+      propertyPath: m_Intensity
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8121476513776290970, guid: 31d9f2de863217b41b0916e125a073b6, type: 3}
       propertyPath: m_Name
