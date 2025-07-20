@@ -5,18 +5,54 @@ namespace Marten.Scripts.PlayerAttacks
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] float speed, dmg, selfDestructTime;
+        [SerializeField] float speed, defaultDamage, selfDestructTime;
         
         private PlayerOrEnemy entityType;
+        private GameObject sender;
+        private float damage, critChance, critDamage, lifeSteal;
 
         private void Start()
         {
             StartCoroutine(SelfDestruct());
+            damage = defaultDamage;
+            critChance = 0;
+            critDamage = 1;
+            lifeSteal = 0;
         }
         
-        public void SetEntityType(PlayerOrEnemy type)
+        public Projectile SetEntityType(PlayerOrEnemy type)
         {
             entityType = type;
+            return this;
+        }
+        public Projectile setDmg(float damageMultiplier = 1)
+        {
+            damage = damageMultiplier * defaultDamage;
+            return this;
+        }
+
+        public Projectile setCritChance(float critChance)
+        {
+            this.critChance = critChance;
+            return this;
+        }
+
+        public Projectile setCritDamage(float critChance)
+        {
+            this.critDamage = critChance;
+            return this;
+        }
+
+        public Projectile setLifesteal(float lifeSteal)
+        {
+            this.lifeSteal = lifeSteal;
+            return this;
+        }
+
+        public Projectile setSender(GameObject sender)
+        {
+            this.sender = sender;
+            return this;
         }
 
         public PlayerOrEnemy GetEntityType()
@@ -46,7 +82,15 @@ namespace Marten.Scripts.PlayerAttacks
             if (other.gameObject.TryGetComponent<IDamageable>(out IDamageable damageable))
             {
                 if ((entityType == PlayerOrEnemy.Player && other.gameObject.CompareTag("Player")) || (entityType == PlayerOrEnemy.Enemy && other.gameObject.CompareTag("Enemy"))) return;
-                damageable.TakeDamage(dmg);
+
+                if (Random.Range(0f, 1f) <= critChance)
+                {
+                    damageable.TakeDamage(damage * critDamage);
+                }
+                else
+                {
+                    damageable.TakeDamage(damage);
+                }
                 Destroy(gameObject);
             }
         }

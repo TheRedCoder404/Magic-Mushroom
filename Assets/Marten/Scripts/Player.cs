@@ -8,15 +8,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Image healthBar;
-    [SerializeField] private GameObject attack;
+    [SerializeField] private GameObject[] attacks;
     [SerializeField] private TMP_Text healthText, waveCountText, waveCounterText;
     [SerializeField] private PlayerStats playerStats;
 
     private GameScreens gameScreens;
 
     private float horizontal, vertical;
-
-    
     
     private GameManager gameManager;
 
@@ -28,9 +26,12 @@ public class Player : MonoBehaviour
         waveCountText.faceColor = Color.green;
         waveCountText.text = gameManager.GetTimeBeforeWave() + "";
         
-        if (attack is not null)
+        if (attacks is not null && attacks.Length > 0)
         {
-            Instantiate(attack, attackTransform.position, Quaternion.identity, transform);
+            foreach (var attack in attacks)
+            {
+                Instantiate(attack, attackTransform.position, Quaternion.identity, transform);
+            }
         }
     }
 
@@ -63,8 +64,8 @@ public class Player : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        healthBar.fillAmount = playerStats.currentHealth / playerStats.MaxHealth;
-        healthText.text = playerStats.currentHealth + " / " + playerStats.MaxHealth;
+        healthBar.fillAmount = playerStats.GetCurrentHealth() / playerStats.MaxHealth;
+        healthText.text = playerStats.GetCurrentHealth() + " / " + playerStats.MaxHealth;
     }
     
     public void UpdateWaveCounterText(int waveCount)
@@ -75,5 +76,38 @@ public class Player : MonoBehaviour
     public void ChangeWaveCountColor(Color color)
     {
         waveCountText.faceColor = color;
+    }
+
+    public void UpdateRange()
+    {
+        foreach (var attack in attacks)
+        {
+            attack.GetComponent<IPlayerAttack>().UpdateRange();
+        }
+    }
+
+    public void UpdateDamage()
+    {
+        // nothing to update
+    }
+
+    public void UpdateAttackSpeed()
+    {
+        // nothing to update
+    }
+
+    public void UpdateCritChance()
+    {
+        // nothing to update
+    }
+
+    public void UpdateCritDamage()
+    {
+        // nothing to update
+    }
+
+    public void UpdateLifesteal()
+    {
+        // nothing to update
     }
 }

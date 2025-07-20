@@ -5,18 +5,20 @@ using Marten.Scripts;
 using Marten.Scripts.PlayerAttacks;
 using UnityEngine;
 
-public class ProjectileAttack : MonoBehaviour, IAttack
+public class ProjectileAttack : MonoBehaviour, IPlayerAttack
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private new SphereCollider collider;
-    [SerializeField] private float defaultRange, attackDelay;
+    [SerializeField] private float defaultRange, defaultAttackDelay;
     
     private List<Collider> targetsInRange = new List<Collider>();
     private bool attacking = false;
     private float projectileSpeed;
+    private PlayerStats playerStats;
 
     private void Start()
     {
+        playerStats = FindFirstObjectByType<PlayerStats>();
         ChangeRange(defaultRange);
         if (projectilePrefab is not null)
         {
@@ -48,7 +50,12 @@ public class ProjectileAttack : MonoBehaviour, IAttack
         Quaternion rotation = Quaternion.LookRotation(direction);
 
         Instantiate(projectilePrefab, transform.position, rotation).GetComponent<Projectile>()
-            .SetEntityType(transform.parent.gameObject.CompareTag("Player") ? PlayerOrEnemy.Player : PlayerOrEnemy.Enemy);
+            .SetEntityType(transform.parent.gameObject.CompareTag("Player") ? PlayerOrEnemy.Player : PlayerOrEnemy.Enemy)
+            .setDmg(playerStats.damage)
+            .setCritChance(playerStats.critChance)
+            .setCritDamage(playerStats.critDamage)
+            .setLifesteal(playerStats.lifesteal)
+            .setSender(transform.parent.gameObject);
     }
 
     public bool CanAttack()
@@ -59,6 +66,36 @@ public class ProjectileAttack : MonoBehaviour, IAttack
     public void ChangeRange(float range)
     {
         collider.radius = range;
+    }
+
+    public void UpdateRange()
+    {
+        ChangeRange(defaultRange * playerStats.range);
+    }
+
+    public void UpdateDamage()
+    {
+        // nothing to update, handle by itself
+    }
+
+    public void UpdateAttackSpeed()
+    {
+        // nothing to update, handle by itself
+    }
+
+    public void UpdateCritChance()
+    {
+        // nothing to update, handle by itself
+    }
+
+    public void UpdateCritDamage()
+    {
+        // nothing to update, handle by itself
+    }
+
+    public void UpdateLifesteal()
+    {
+        // nothing to update, handle by itself
     }
 
     private void OnTriggerEnter(Collider other)
@@ -91,7 +128,7 @@ public class ProjectileAttack : MonoBehaviour, IAttack
         if (CanAttack())
         {
             DoAttack();
-            yield return new WaitForSeconds(attackDelay);
+            yield return new WaitForSeconds(defaultAttackDelay * (1 / playerStats.attackSpeed));
             StartCoroutine(Attack());
         }
         else

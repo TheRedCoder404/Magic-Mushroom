@@ -5,7 +5,7 @@ using Marten.Scripts;
 using Marten.Scripts.PlayerAttacks;
 using UnityEngine;
 
-public class EnemyProjectileAttack : MonoBehaviour, IAttack
+public class EnemyProjectileAttack : MonoBehaviour, IEnemyAttack
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private new SphereCollider collider;
@@ -48,7 +48,8 @@ public class EnemyProjectileAttack : MonoBehaviour, IAttack
         Quaternion rotation = Quaternion.LookRotation(direction);
 
         Instantiate(projectilePrefab, transform.position, rotation).GetComponent<Projectile>()
-            .SetEntityType(transform.parent.gameObject.CompareTag("Player") ? PlayerOrEnemy.Player : PlayerOrEnemy.Enemy);
+            .SetEntityType(transform.parent.gameObject.CompareTag("Player") ? PlayerOrEnemy.Player : PlayerOrEnemy.Enemy)
+            .setSender(transform.parent.gameObject);
     }
 
     public bool CanAttack()
