@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  dmg: 5
+  defaultDamage: 5
   selfDestructTime: 5

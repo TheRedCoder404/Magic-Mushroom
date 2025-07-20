@@ -1,27 +1,45 @@
+using System;
 using Marten.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float _damage = 1f;
-    [SerializeField] private float speed = 12f;
-    [SerializeField] private float _attackSpeed = 1f;
-    [SerializeField] private float _range = 6f;
-    [SerializeField] private float resistance = 1f;
-    [SerializeField] private float _critChance = 0.1f;
-    [SerializeField] private float _critDamage = 1.5f;
-    [SerializeField] private float _lifesteal = 0f;
-    [SerializeField] private float earning = 1f;
+    [SerializeField] public float defaultMaxHealth = 100f;
+    [SerializeField] public float defaultDamage = 1f;
+    [SerializeField] public float defaultSpeed = 12f;
+    [SerializeField] public float defaultAttackSpeed = 1f;
+    [SerializeField] public float defaultRange = 6f;
+    [SerializeField] public float defaultResistance = 1f;
+    [SerializeField] public float defaultCritChance = 0.1f;
+    [SerializeField] public float defaultCritDamage = 1.5f;
+    [SerializeField] public float defaultLifesteal = 0f;
+    [SerializeField] public float defaultEarning = 1f;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private GameScreens gameScreens;
     [SerializeField] private Player player;
     
+    private float _maxHealth;
     private float _currentHealth;
+    private float _damage;
+    private float _speed;
+    private float _attackSpeed;
+    private float _range;
+    private float _resistance;
+    private float _critChance;
+    private float _critDamage;
+    private float _lifesteal;
+    private float _earning;
 
-    public float MaxHealth => maxHealth;
-    public float Speed => speed;
+    public float maxHealth
+    {
+        get { return _maxHealth; }
+        set 
+        { 
+            _maxHealth = value;
+            player.UpdateHealthBar();
+        }
+    }
 
     public float currentHealth
     {
@@ -31,16 +49,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
             _currentHealth = value;
             player.UpdateHealthBar();
             if (_currentHealth <= 0) Death();
-        }
-    }
-    
-    public float range
-    {
-        get { return _range; }
-        set
-        {
-            _range = value;
-            player.UpdateRange();
         }
     }
     
@@ -54,6 +62,15 @@ public class PlayerStats : MonoBehaviour, IDamageable
         }
     }
     
+    public float speed
+    {
+        get { return _speed; }
+        set
+        {
+            _speed = value;
+        }
+    }
+    
     public float attackSpeed
     {
         get { return _attackSpeed; }
@@ -61,6 +78,25 @@ public class PlayerStats : MonoBehaviour, IDamageable
         {
             _attackSpeed = value;
             player.UpdateAttackSpeed();
+        }
+    }
+    
+    public float range
+    {
+        get { return _range; }
+        set
+        {
+            _range = value;
+            player.UpdateRange();
+        }
+    }
+    
+    public float resistance
+    {
+        get { return _resistance; }
+        set
+        {
+            _resistance = value;
         }
     }
     
@@ -94,9 +130,29 @@ public class PlayerStats : MonoBehaviour, IDamageable
         }
     }
     
-    private void Awake()
+    public float earning
     {
-        currentHealth = maxHealth;
+        get { return _earning; }
+        set
+        {
+            _earning = value;
+            player.UpdateLifesteal();
+        }
+    }
+
+    private void Start()
+    {
+        _maxHealth = defaultMaxHealth;
+        _currentHealth = defaultMaxHealth;
+        _damage = defaultDamage;
+        _speed = defaultSpeed;
+        _attackSpeed = defaultAttackSpeed;
+        _range = defaultRange;
+        _resistance = defaultResistance;
+        _critChance = defaultCritChance;
+        _critDamage = defaultCritDamage;
+        _lifesteal = defaultLifesteal;
+        _earning = defaultEarning;
     }
 
     public float GetCurrentHealth()

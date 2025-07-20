@@ -10,5 +10,7 @@ namespace Marten.Scripts
         public void UpdateCritChance();
         public void UpdateCritDamage();
         public void UpdateLifesteal();
+        
+        public int prefabCount { get; set; }
     }
 }

@@ -11,19 +11,19 @@ public class Item : ScriptableObject
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private string description;
     [SerializeField] private int price;
-    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private GameObject attackPrefab;
     [SerializeField] private ChanceWeight chance;
     
     [Header("Item Stats")]
-    [SerializeField] private StatType[] statType;
-    [SerializeField] private Stats[] stats;
-    [SerializeField] private float[] value;
+    [SerializeField] public StatType[] statType;
+    [SerializeField] public Stats[] stats;
+    [SerializeField] public float[] value;
 
     public string ItemName => itemName;
     public Sprite ItemIcon => itemIcon;
     public string Description => description;
     public int Price => price;
-    public GameObject ItemPrefab => itemPrefab;
+    public GameObject AttackPrefab => attackPrefab;
     public ChanceWeight Chance => chance;
 
     public string GenerateStatsString()

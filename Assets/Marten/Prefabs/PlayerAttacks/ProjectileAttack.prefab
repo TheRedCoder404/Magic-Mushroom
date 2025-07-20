@@ -69,4 +69,5 @@ MonoBehaviour:
   projectilePrefab: {fileID: 98341768245841303, guid: 2e090ef6653666d4f8316d0fb968ec9f, type: 3}
   collider: {fileID: 8711748911449442425}
   defaultRange: 7
-  attackDelay: 0.5
+  defaultAttackDelay: 1
+  attackDelaySpray: 0.2

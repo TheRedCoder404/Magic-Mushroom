@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Marten.Scripts;
 using TMPro;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private Transform attackTransform;
     [SerializeField] private Image healthBar;
-    [SerializeField] private GameObject[] attacks;
+    [SerializeField] private List<GameObject> attacks;
     [SerializeField] private TMP_Text healthText, waveCountText, waveCounterText;
     [SerializeField] private PlayerStats playerStats;
 
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
         waveCountText.faceColor = Color.green;
         waveCountText.text = gameManager.GetTimeBeforeWave() + "";
         
-        if (attacks is not null && attacks.Length > 0)
+        if (attacks is not null && attacks.Capacity > 0)
         {
             foreach (var attack in attacks)
             {
@@ -45,27 +46,41 @@ public class Player : MonoBehaviour
 
         if (horizontal != 0 && vertical == 0)
         {
-            rigidbody.linearVelocity = new Vector3(horizontal * playerStats.Speed, 0, 0);
+            rigidbody.linearVelocity = new Vector3(horizontal * playerStats.speed, 0, 0);
         }
         else if (horizontal == 0 && vertical != 0)
         {
-            rigidbody.linearVelocity = new Vector3(0, 0, vertical * playerStats.Speed);
+            rigidbody.linearVelocity = new Vector3(0, 0, vertical * playerStats.speed);
         }
         else if (horizontal != 0 && vertical != 0)
         {
-            Vector3 vector = new Vector3(horizontal * playerStats.Speed, 0, vertical * playerStats.Speed);
-            rigidbody.linearVelocity = vector.normalized * playerStats.Speed;
+            Vector3 vector = new Vector3(horizontal * playerStats.speed, 0, vertical * playerStats.speed);
+            rigidbody.linearVelocity = vector.normalized * playerStats.speed;
         }
         else
         {
             rigidbody.linearVelocity = Vector3.zero;
         }
     }
+    
+    public void AddAttack(GameObject attackPrefab)
+    {
+        if (attackPrefab is null) return;
+
+        if (attacks.Contains(attackPrefab))
+        {
+            attacks.Find(o => o == attackPrefab).GetComponent<IPlayerAttack>().prefabCount++;
+        }
+        else
+        {
+            attacks.Add(attackPrefab);
+        }
+    }
 
     public void UpdateHealthBar()
     {
-        healthBar.fillAmount = playerStats.GetCurrentHealth() / playerStats.MaxHealth;
-        healthText.text = playerStats.GetCurrentHealth() + " / " + playerStats.MaxHealth;
+        healthBar.fillAmount = playerStats.GetCurrentHealth() / playerStats.maxHealth;
+        healthText.text = playerStats.GetCurrentHealth() + " / " + playerStats.maxHealth;
     }
     
     public void UpdateWaveCounterText(int waveCount)
@@ -82,7 +97,7 @@ public class Player : MonoBehaviour
     {
         foreach (var attack in attacks)
         {
-            attack.GetComponent<IPlayerAttack>().UpdateRange();
+            if (attack && TryGetComponent<IPlayerAttack>(out var playerAttack)) playerAttack.UpdateRange();
         }
     }
 

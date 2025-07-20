@@ -1,5 +1,6 @@
 using System.Collections;
 using Marten.Scripts;
+using Marten.Scripts.PlayerAttacks;
 using UnityEngine;
 
 public class WaveController : MonoBehaviour
@@ -50,6 +51,12 @@ public class WaveController : MonoBehaviour
         foreach (var enemy in enemies)
         {
             enemy.DeathNoCount();
+        }
+        
+        Projectile[] projectiles = GameObject.FindObjectsByType<Projectile>(FindObjectsSortMode.None);
+        foreach (var projectile in projectiles)
+        {
+            Destroy(projectile.gameObject);
         }
     }
 }

@@ -9,10 +9,10 @@ public class EnemyProjectileAttack : MonoBehaviour, IEnemyAttack
 {
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private new SphereCollider collider;
-    [SerializeField] private float defaultRange, attackDelay;
+    [SerializeField] private float defaultRange = 6f, attackDelay = 2f, startDelay = 1f;
     
     private List<Collider> targetsInRange = new List<Collider>();
-    private bool attacking = false;
+    private bool attacking = false, allowedToAttack = false;
     private float projectileSpeed;
 
     private void Start()
@@ -22,6 +22,13 @@ public class EnemyProjectileAttack : MonoBehaviour, IEnemyAttack
         {
             projectileSpeed = projectilePrefab.GetComponent<Projectile>().GetSpeed();
         }
+        StartCoroutine(StartDelay());
+    }
+
+    public IEnumerator StartDelay()
+    {
+        yield return new WaitForSeconds(startDelay);
+        allowedToAttack = true;
     }
 
     public void DoAttack()
@@ -54,7 +61,7 @@ public class EnemyProjectileAttack : MonoBehaviour, IEnemyAttack
 
     public bool CanAttack()
     {
-        return targetsInRange.Count > 0;
+        return targetsInRange.Count > 0 && allowedToAttack;
     }
 
     public void ChangeRange(float range)

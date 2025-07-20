@@ -996,6 +996,7 @@ MonoBehaviour:
   deathScreen: {fileID: 308295188836255880}
   winScreen: {fileID: 1668335941346632866}
   playerStats: {fileID: 2892708441742662777}
+  playerInventory: {fileID: 553884734760228663}
   gameManager: {fileID: 0}
 --- !u!1 &1330877512940609294
 GameObject:
@@ -1768,6 +1769,7 @@ GameObject:
   - component: {fileID: 803379484687934633}
   - component: {fileID: 8675785366992326635}
   - component: {fileID: 714798931345311791}
+  - component: {fileID: 1039174510273509449}
   m_Layer: 5
   m_Name: NextWaveScreen
   m_TagString: Untagged
@@ -1839,6 +1841,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1039174510273509449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4587043199614004625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e72530d82f18af64f8190677ec5444a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSlotPosition1: {fileID: 8341287569434756984}
+  itemSlotPosition2: {fileID: 663556249123312116}
+  itemSlotPosition3: {fileID: 3628427405020264458}
+  itemSlotPosition4: {fileID: 419251361095677972}
+  itemSlotPosition5: {fileID: 3467739552770530549}
+  items:
+  - {fileID: 11400000, guid: fc2056edbaff3d446a6d18342065e451, type: 2}
+  itemSlotPrefab: {fileID: 2256173230366069585, guid: 70b84503e8dc687419b5c969f5873b56, type: 3}
 --- !u!1 &5041459126713120950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,7 +2967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8265745622726546411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3412,9 +3434,9 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3437,7 +3459,8 @@ MonoBehaviour:
   rigidbody: {fileID: 6339021335470124675}
   attackTransform: {fileID: 7942913946463745055}
   healthBar: {fileID: 1203845818934079585}
-  attacks: []
+  attacks:
+  - {fileID: 7283483610893730563, guid: 967513d50ad40b245bf43450da8f7e2c, type: 3}
   healthText: {fileID: 3821465461890060242}
   waveCountText: {fileID: 7672480641862373032}
   waveCounterText: {fileID: 6319131593683229565}
@@ -3454,16 +3477,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35c7a1d5bdc38f41a339ec2ce717505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  _damage: 1
-  speed: 12
-  _attackSpeed: 1
-  _range: 6
-  resistance: 1
-  _critChance: 0.1
-  _critDamage: 1.5
-  _lifesteal: 0
-  earning: 1
+  defaultMaxHealth: 100
+  defaultDamage: 1
+  defaultSpeed: 12
+  defaultAttackSpeed: 1
+  defaultRange: 6
+  defaultResistance: 1
+  defaultCritChance: 0.1
+  defaultCritDamage: 1.5
+  defaultLifesteal: 0
+  defaultEarning: 1
   gameManager: {fileID: 0}
   gameScreens: {fileID: 7481497389891583797}
   player: {fileID: 227935977794521414}
@@ -3498,7 +3521,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -3703,7 +3726,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6443029448441818671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1039174510273509449}
+        m_TargetAssemblyTypeName: NextWaveScreen, Assembly-CSharp
+        m_MethodName: RerollItems
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8967531856415539028
 GameObject:
   m_ObjectHideFlags: 0

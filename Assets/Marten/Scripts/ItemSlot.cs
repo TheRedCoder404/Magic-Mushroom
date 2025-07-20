@@ -24,4 +24,18 @@ public class ItemSlot : MonoBehaviour
     {
         this.item = newItem;
     }
+    
+    public void GiveItemToPlayer()
+    {
+        Inventory playerinventory = GameObject.FindFirstObjectByType<Inventory>();
+        playerinventory.AddItem(item);
+        
+        if (item.AttackPrefab)
+        {
+            Player player = GameObject.FindFirstObjectByType<Player>();
+            player.AddAttack(item.AttackPrefab);
+        }
+        
+        Destroy(this.gameObject);
+    }
 }

@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 699e9656a52c87049a2ce014aa00acd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: fc2056edbaff3d446a6d18342065e451, type: 2}
+  item: {fileID: 0}
   icon: {fileID: 636910220633195551}
   name: {fileID: 6898762165213040721}
   description: {fileID: 7419195764817066700}
@@ -188,7 +188,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6307445634532443902}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7671658237215996157}
+        m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
+        m_MethodName: GiveItemToPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2718284564506388445
 GameObject:
   m_ObjectHideFlags: 0

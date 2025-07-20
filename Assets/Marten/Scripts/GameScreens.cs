@@ -7,6 +7,7 @@ public class GameScreens : MonoBehaviour
 {
     [SerializeField] private GameObject nextWaveScreen, deathScreen, winScreen;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private Inventory playerInventory;
     [SerializeField] private GameManager gameManager;
     
     public void OpenMenu(Menu menu)
@@ -52,6 +53,7 @@ public class GameScreens : MonoBehaviour
     public void ContinueButton()
     {
         nextWaveScreen.SetActive(false);
+        playerInventory.CalculateNewStats();
         playerStats.CompleteHeal();
         gameManager.StartNewWave();
         Time.timeScale = 1;

@@ -5,19 +5,16 @@ namespace Marten.Scripts.PlayerAttacks
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] float speed, defaultDamage, selfDestructTime;
+        [SerializeField] float speed = 5, defaultDamage = 5, selfDestructTime = 5;
         
         private PlayerOrEnemy entityType;
         private GameObject sender;
-        private float damage, critChance, critDamage, lifeSteal;
+        private float damage = 5, critChance = 0, critDamage = 1, lifeSteal = 0;
 
         private void Start()
         {
             StartCoroutine(SelfDestruct());
             damage = defaultDamage;
-            critChance = 0;
-            critDamage = 1;
-            lifeSteal = 0;
         }
         
         public Projectile SetEntityType(PlayerOrEnemy type)

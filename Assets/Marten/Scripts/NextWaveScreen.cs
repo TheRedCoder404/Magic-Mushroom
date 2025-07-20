@@ -9,7 +9,6 @@ public class NextWaveScreen : MonoBehaviour
     [SerializeField] private GameObject itemSlotPosition1, itemSlotPosition2, itemSlotPosition3, itemSlotPosition4, itemSlotPosition5;
     [SerializeField] private Item[] items;
     [SerializeField] private GameObject itemSlotPrefab;
-    [SerializeField] private Button rerollButton;
 
     private void Start()
     {
@@ -18,21 +17,23 @@ public class NextWaveScreen : MonoBehaviour
 
     private void GenerateItemSlots()
     {
+        ClearItemSlots();
+        
         List<Item> pool = new List<Item>();
         
         foreach (var item in items)
         {
-            for (int i = 0; i < (int)item.Chance; i++)
+            for (int i = 0; i < (int)item.Chance + 1; i++)
             {
                 pool.Add(item);
             }
         }
         
-        int randomIndex1 = Random.Range(0, pool.Count - 1);
-        int randomIndex2 = Random.Range(0, pool.Count - 1);
-        int randomIndex3 = Random.Range(0, pool.Count - 1);
-        int randomIndex4 = Random.Range(0, pool.Count - 1);
-        int randomIndex5 = Random.Range(0, pool.Count - 1);
+        int randomIndex1 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
+        int randomIndex2 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
+        int randomIndex3 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
+        int randomIndex4 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
+        int randomIndex5 = Math.Clamp(Random.Range(0, pool.Count), 0, pool.Count - 1);
         
         GameObject itemSlot1 = Instantiate(itemSlotPrefab, itemSlotPosition1.transform.position, itemSlotPosition1.transform.rotation, itemSlotPosition1.transform);
         itemSlot1.GetComponent<ItemSlot>().SetItem(items[randomIndex1]);
@@ -48,16 +49,15 @@ public class NextWaveScreen : MonoBehaviour
     
     private void ClearItemSlots()
     {
-        Destroy(itemSlotPosition1.transform.GetChild(0).gameObject);
-        Destroy(itemSlotPosition2.transform.GetChild(0).gameObject);
-        Destroy(itemSlotPosition3.transform.GetChild(0).gameObject);
-        Destroy(itemSlotPosition4.transform.GetChild(0).gameObject);
-        Destroy(itemSlotPosition5.transform.GetChild(0).gameObject);
+        if (itemSlotPosition1.transform.childCount > 0) Destroy(itemSlotPosition1.transform.GetChild(0).gameObject);
+        if (itemSlotPosition2.transform.childCount > 0) Destroy(itemSlotPosition2.transform.GetChild(0).gameObject);
+        if (itemSlotPosition3.transform.childCount > 0) Destroy(itemSlotPosition3.transform.GetChild(0).gameObject);
+        if (itemSlotPosition4.transform.childCount > 0) Destroy(itemSlotPosition4.transform.GetChild(0).gameObject);
+        if (itemSlotPosition5.transform.childCount > 0) Destroy(itemSlotPosition5.transform.GetChild(0).gameObject);
     }
     
     public void RerollItems()
     {
-        ClearItemSlots();
         GenerateItemSlots();
     }
 }
