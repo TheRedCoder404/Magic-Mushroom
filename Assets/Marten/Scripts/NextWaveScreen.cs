@@ -10,16 +10,36 @@ public class NextWaveScreen : MonoBehaviour
     [SerializeField] private GameObject itemSlotPosition1, itemSlotPosition2, itemSlotPosition3, itemSlotPosition4, itemSlotPosition5;
     [SerializeField] private Item[] items;
     [SerializeField] private GameObject itemSlotPrefab;
-    [SerializeField] private TMP_Text shroomText;
+    [SerializeField] private TMP_Text shroomText, rerollText;
+    [SerializeField] private int rerollCost, defaultRerollCost = 5, rerollsLeft, rerollsPerTurn = 3, rerollsPerformed = 0;
+    [SerializeField] private float rerollPriceMultiplier = 1.5f;
 
+    private bool isRerollPurchaseable = false;
+    private PlayerStats playerStats;
+    
     private void Start()
     {
+        playerStats = GameObject.FindFirstObjectByType<PlayerStats>();
+        rerollCost = defaultRerollCost;
+        CheckRerollPurchaseablity();
+        ResetRerolls();
         GenerateItemSlots();
     }
 
     public void UpdateShroomText()
     {
-        shroomText.text = "Shrooms: " + GameObject.FindFirstObjectByType<PlayerStats>().shrooms;
+        shroomText.text = "Shrooms: " + playerStats.shrooms;
+    }
+
+    public void ResetRerolls()
+    {
+        rerollsLeft = rerollCost;
+        UpdateRerollText();
+    }
+
+    public void UpdateRerollText()
+    {
+        shroomText.text = "Reroll - " + rerollCost;
     }
 
     private void GenerateItemSlots()
@@ -66,7 +86,29 @@ public class NextWaveScreen : MonoBehaviour
     
     public void RerollItems()
     {
+        PlayerStats playerStats = GameObject.FindFirstObjectByType<PlayerStats>();
+        if (rerollsLeft <= 0 || !isRerollPurchaseable) return;
+        rerollsLeft--;
+        rerollsPerformed++;
+        playerStats.SpendShroom(rerollCost);
+        rerollCost = Mathf.RoundToInt(defaultRerollCost * Mathf.Pow(rerollPriceMultiplier, rerollsPerformed));
+        UpdateRerollText();
         GenerateItemSlots();
+    }
+    
+    public void CheckRerollPurchaseablity()
+    {
+        PlayerStats playerStats = GameObject.FindFirstObjectByType<PlayerStats>();
+        if (playerStats.shrooms >= rerollCost)
+        {
+            rerollText.faceColor = Color.green;
+            isRerollPurchaseable = false;
+        }
+        else
+        {
+            rerollText.faceColor = Color.red;
+            isRerollPurchaseable = false;
+        }
     }
 
     public void CheckAllPurchaseablity()

@@ -70,3 +70,4 @@ MonoBehaviour:
   collider: {fileID: 8711748911449442425}
   defaultRange: 6
   attackDelay: 2
+  startDelay: 0.5

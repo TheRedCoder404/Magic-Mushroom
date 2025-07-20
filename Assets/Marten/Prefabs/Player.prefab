@@ -1998,7 +1998,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc2056edbaff3d446a6d18342065e451, type: 2}
   - {fileID: 11400000, guid: 8cbac2bfbf6d86746b2d06b3672dcf12, type: 2}
   itemSlotPrefab: {fileID: 2256173230366069585, guid: 70b84503e8dc687419b5c969f5873b56, type: 3}
-  shroomText: {fileID: 0}
+  shroomText: {fileID: 4701756790484670947}
+  rerollText: {fileID: 6008352364421430426}
+  rerollCost: 0
+  defaultRerollCost: 10
+  rerollsLeft: 0
+  rerollsPerTurn: 3
+  rerollsPerformed: 0
+  rerollPriceMultiplier: 1.5
 --- !u!1 &5041459126713120950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,8 +2049,8 @@ Camera:
   m_GameObject: {fileID: 5041459126713120950}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.5, g: 0.040094346, b: 0.12108275, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
