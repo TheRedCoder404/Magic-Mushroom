@@ -183,6 +183,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4748839320234955204, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1748572174}
+    - target: {fileID: 4748839320234955204, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+      propertyPath: spinSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5041459126713120950, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -551,6 +559,11 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 562711878967232697, guid: 4a1e805ede1395f44bd2d6c8bcff0683, type: 3}
   m_PrefabInstance: {fileID: 1193130672805943663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1748572174 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7583010714895179645, guid: a5bed53f5aa15614592043c3edf2256a, type: 3}
+  m_PrefabInstance: {fileID: 616442628}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1193130672805943663
 PrefabInstance:

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private List<GameObject> attacks;
     [SerializeField] private TMP_Text healthText, waveCountText, waveCounterText, shroomText;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private Animator animator;
 
     private GameScreens gameScreens;
 
@@ -62,6 +63,7 @@ public class Player : MonoBehaviour
         {
             rigidbody.linearVelocity = Vector3.zero;
         }
+
     }
     
     public void AddAttack(GameObject attackPrefab)

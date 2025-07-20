@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5d281f6c4245069d0cc9e253249391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 98341768245841303, guid: 88b48657cc4b5ed4bb6a4e4ca829b252, type: 3}
+  projectilePrefab: {fileID: 98341768245841303, guid: 2e090ef6653666d4f8316d0fb968ec9f, type: 3}
   collider: {fileID: 8711748911449442425}
   defaultRange: 6
   attackDelay: 2
